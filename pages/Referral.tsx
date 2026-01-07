@@ -162,8 +162,8 @@ const Referral: React.FC = () => {
           <div className="flex items-center justify-center text-xs text-slate-400 mt-4 bg-gray-50 p-2 rounded text-center">
              <AlertCircle className="w-3 h-3 mr-2 flex-shrink-0" />
              {language === 'fr' 
-              ? "Transmission exclusive à r.dewispelaere@cliniqueleverseau.be" 
-              : "Transmitted exclusively to r.dewispelaere@cliniqueleverseau.be"}
+              ? "Transmission exclusive à secretariat@cliniqueleverseau.be" 
+              : "Transmitted exclusively to secretariat@cliniqueleverseau.be"}
           </div>
         </form>
       </div>

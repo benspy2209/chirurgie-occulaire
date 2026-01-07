@@ -126,7 +126,7 @@ const Layout: React.FC = () => {
               <p className="text-slate-500 text-sm leading-relaxed max-w-md">
                 Chaussée de Louvain 43/2, 1300 Wavre<br/>
                 Tel: +32 10 41 28 01<br/>
-                <a href="mailto:r.dewispelaere@cliniqueleverseau.be" className="text-slate-900 hover:underline">r.dewispelaere@cliniqueleverseau.be</a>
+                <a href="mailto:secretariat@cliniqueleverseau.be" className="text-slate-900 hover:underline">secretariat@cliniqueleverseau.be</a>
               </p>
             </div>
             <div>

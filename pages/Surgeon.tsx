@@ -32,39 +32,46 @@ const Surgeon: React.FC = () => {
             </div>
           </section>
 
-          {/* Specializations */}
+          {/* Specializations & Activities */}
           <section>
             <div className="flex items-start mb-4">
               <Activity className="w-6 h-6 text-slate-400 mt-1 mr-4 flex-shrink-0" />
               <div>
-                <h2 className="text-2xl font-medium text-slate-900 mb-4">{language === 'fr' ? 'Spécialisations' : 'Specializations'}</h2>
-                <ul className="space-y-2">
+                <h2 className="text-2xl font-medium text-slate-900 mb-4">{language === 'fr' ? 'Spécialisations & Activité' : 'Specializations & Activity'}</h2>
+                <ul className="space-y-2 mb-6">
                   {t.specializations.map((item, idx) => (
                     <li key={idx} className="text-slate-600 text-base">
                       • {item}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 bg-gray-50 p-6">
+                
+                {/* Grey Box for Volume/Activities */}
+                <div className="bg-gray-50 p-6 mb-4">
                   {t.activities.map((item, idx) => (
-                    <p key={idx} className="text-slate-700 text-sm mb-2 last:mb-0">
+                    <p key={idx} className="text-slate-800 font-medium text-sm mb-2 last:mb-0">
                       {item}
                     </p>
                   ))}
                 </div>
+
+                {/* Disclaimer (What I don't do) - Small and Italic */}
+                <p className="text-xs text-slate-400 italic">
+                  {t.disclaimer}
+                </p>
               </div>
             </div>
           </section>
 
-          {/* Positions */}
-          <section>
+          {/* Positions - Moved to Bottom */}
+          <section className="pt-8 border-t border-gray-100">
             <div className="flex items-start mb-4">
               <Briefcase className="w-6 h-6 text-slate-400 mt-1 mr-4 flex-shrink-0" />
               <div>
                 <h2 className="text-2xl font-medium text-slate-900 mb-4">{language === 'fr' ? 'Fonctions Actuelles' : 'Current Positions'}</h2>
                 <ul className="space-y-4">
                   {t.positions.map((item, idx) => (
-                    <li key={idx} className="text-slate-600 text-base leading-relaxed">
+                    <li key={idx} className="text-slate-600 text-base leading-relaxed font-light">
                       {item}
                     </li>
                   ))}

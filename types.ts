@@ -36,6 +36,7 @@ export interface SiteContent {
     diplomas: string[];
     specializations: string[];
     activities: string[];
+    disclaimer: string; // New field for "what I don't do"
     positions: string[];
   };
   cataract: {
@@ -115,6 +116,9 @@ export interface SiteContent {
     consultation_locations: {
       name: string;
       address: string;
+      phone: string;
+      hours: string; // New field
+      map_url: string; // New field for iframe embed
       mikrono_text: string;
       mikrono_link: string;
     }[];

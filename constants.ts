@@ -1,11 +1,5 @@
 import { SiteContent } from './types';
 
-// Extended type for the new structure (implied flexibility in types.ts or we extend here if needed, 
-// but for this task I will fit it into the existing structure where possible or add new keys if TypeScript allows loose typing 
-// or I'll assume I can modify the object structure freely as types.ts wasn't strictly enforced in the prompt to be updated, 
-// but to be safe I will just update the content object).
-// Since I cannot see types.ts in the write block, I will assume the structure follows the content.
-
 export const CONTENT: Record<string, SiteContent> = {
   fr: {
     nav: {
@@ -41,18 +35,16 @@ export const CONTENT: Record<string, SiteContent> = {
       ],
       specializations: [
         "Chirurgie de la cataracte",
-        "Chirurgie vitréo-rétinienne (rétine et vitré)",
-        "Ne réalise pas de consultations de dépistage",
-        "Ne réalise pas de consultations pour lunettes"
+        "Chirurgie vitréo-rétinienne (rétine et vitré)"
       ],
       activities: [
         "Chirurgien à fort volume (> 400 chirurgies de la cataracte/an)",
         "Pratique régulière de la chirurgie vitréo-rétinienne (vitrectomies 25G)"
       ],
+      disclaimer: "Le docteur ne réalise pas de consultations de dépistage ni de consultations pour lunettes.",
       positions: [
-        "Responsable du département de chirurgie ophtalmologique (2020-2025)",
-        "Chef de clinique adjoint – CHU Saint-Pierre",
-        "Consultant – Messidor",
+        "Responsable du département de chirurgie ophtalmologique – CHU Saint-Pierre",
+        "Consultant – Messidor Eye Center",
         "Consultant – Clinique Le Verseau"
       ]
     },
@@ -103,13 +95,13 @@ export const CONTENT: Record<string, SiteContent> = {
     },
     exams: {
       title: "Consultations & Examens",
-      intro: "Le cabinet dispose de l'équipement nécessaire pour réaliser un bilan ophtalmologique complet.",
+      intro: "Les cabinets disposent de l'équipement nécessaire pour réaliser un bilan ophtalmologique complet.",
       list: [
         "Mesure de l'acuité visuelle et réfraction",
         "Examen à la lampe à fente (segment antérieur)",
-        "Fond d'œil (rétine et nerf optique)",
         "OCT (Tomographie par Cohérence Optique)",
-        "Biométrie pour calcul d'implant"
+        "Biométrie pour calcul d'implant",
+        "Topographie cornéenne"
       ]
     },
     appointment: {
@@ -165,12 +157,18 @@ export const CONTENT: Record<string, SiteContent> = {
         {
           name: "Clinique Le Verseau – Wavre",
           address: "Chaussée de Louvain 43/2, 1300 Wavre",
+          phone: "+32 10 41 28 01",
+          hours: "Mercredi : Toute la journée",
+          map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2527.498664687665!2d4.5986873!3d50.6923483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c17d7b27563069%3A0xb35994262142750e!2sClinique%20Le%20Verseau!5e0!3m2!1sfr!2sbe",
           mikrono_text: "Prendre RDV (Mikrono)",
           mikrono_link: "https://www.mikrono.com"
         },
         {
           name: "Messidor Eye Center",
           address: "Avenue de Messidor 215, 1180 Uccle",
+          phone: "+32 2 346 68 02",
+          hours: "Mardi : Après-midi",
+          map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.0371302868843!2d4.3499!3d50.8166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c45744390069%3A0x6676067006830706!2sMessidor%20Eye%20Center!5e0!3m2!1sfr!2sbe",
           mikrono_text: "Prendre RDV (Mikrono)",
           mikrono_link: "https://www.mikrono.com"
         }
@@ -229,18 +227,16 @@ export const CONTENT: Record<string, SiteContent> = {
       ],
       specializations: [
         "Cataract Surgery",
-        "Vitreo-retinal Surgery (Retina and Vitreous)",
-        "Does not perform screening consultations",
-        "Does not perform consultations for glasses"
+        "Vitreo-retinal Surgery (Retina and Vitreous)"
       ],
       activities: [
         "High-volume surgeon (> 400 cataract surgeries/year)",
         "Regular practice of vitreo-retinal surgery (25G vitrectomies)"
       ],
+      disclaimer: "The doctor does not perform screening consultations or consultations for glasses.",
       positions: [
-        "Head of Ophthalmic Surgery Department (2020-2025)",
-        "Deputy Head of Clinic – CHU Saint-Pierre",
-        "Consultant – Messidor",
+        "Head of Ophthalmic Surgery Department – CHU Saint-Pierre",
+        "Consultant – Messidor Eye Center",
         "Consultant – Clinique Le Verseau"
       ]
     },
@@ -291,13 +287,13 @@ export const CONTENT: Record<string, SiteContent> = {
     },
     exams: {
       title: "Consultations & Exams",
-      intro: "The practice is equipped to perform a complete ophthalmological assessment.",
+      intro: "The practices are equipped to perform a complete ophthalmological assessment.",
       list: [
         "Visual acuity measurement and refraction",
         "Slit lamp examination (anterior segment)",
-        "Fundus examination (retina and optic nerve)",
         "OCT (Optical Coherence Tomography)",
-        "Biometry for implant calculation"
+        "Biometry for implant calculation",
+        "Corneal topography"
       ]
     },
     appointment: {
@@ -353,12 +349,18 @@ export const CONTENT: Record<string, SiteContent> = {
         {
           name: "Clinique Le Verseau – Wavre",
           address: "Chaussée de Louvain 43/2, 1300 Wavre",
+          phone: "+32 10 41 28 01",
+          hours: "Wednesday: All day",
+          map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2527.498664687665!2d4.5986873!3d50.6923483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c17d7b27563069%3A0xb35994262142750e!2sClinique%20Le%20Verseau!5e0!3m2!1sfr!2sbe",
           mikrono_text: "Book Online (Mikrono)",
           mikrono_link: "https://www.mikrono.com"
         },
         {
           name: "Messidor Eye Center",
           address: "Avenue de Messidor 215, 1180 Uccle",
+          phone: "+32 2 346 68 02",
+          hours: "Tuesday: Afternoon",
+          map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.0371302868843!2d4.3499!3d50.8166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c45744390069%3A0x6676067006830706!2sMessidor%20Eye%20Center!5e0!3m2!1sfr!2sbe",
           mikrono_text: "Book Online (Mikrono)",
           mikrono_link: "https://www.mikrono.com"
         }
