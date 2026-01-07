@@ -120,7 +120,7 @@ export const CONTENT: Record<string, SiteContent> = {
           title: "Messidor Eye Center",
           city: "Uccle",
           address: "Avenue de Messidor 213, 1180 Uccle",
-          phone: "+32 2 346 68 02",
+          phone: "+32 2 318 12 12",
           mikronoLink: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=fr", 
           mikronoText: "Prendre RDV (Mikrono)"
         },
@@ -166,7 +166,7 @@ export const CONTENT: Record<string, SiteContent> = {
         {
           name: "Messidor Eye Center",
           address: "Avenue de Messidor 213, 1180 Uccle",
-          phone: "+32 2 346 68 02",
+          phone: "+32 2 318 12 12",
           hours: "Mardi : Après-midi",
           map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.0371302868843!2d4.3499!3d50.8166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c45744390069%3A0x6676067006830706!2sMessidor%20Eye%20Center!5e0!3m2!1sfr!2sbe",
           mikrono_text: "Prendre RDV (Mikrono)",
@@ -312,7 +312,7 @@ export const CONTENT: Record<string, SiteContent> = {
           title: "Messidor Eye Center",
           city: "Uccle",
           address: "Avenue de Messidor 213, 1180 Uccle",
-          phone: "+32 2 346 68 02",
+          phone: "+32 2 318 12 12",
           mikronoLink: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=en",
           mikronoText: "Book Online (Mikrono)"
         },
@@ -358,7 +358,7 @@ export const CONTENT: Record<string, SiteContent> = {
         {
           name: "Messidor Eye Center",
           address: "Avenue de Messidor 213, 1180 Uccle",
-          phone: "+32 2 346 68 02",
+          phone: "+32 2 318 12 12",
           hours: "Tuesday: Afternoon",
           map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.0371302868843!2d4.3499!3d50.8166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c45744390069%3A0x6676067006830706!2sMessidor%20Eye%20Center!5e0!3m2!1sfr!2sbe",
           mikrono_text: "Book Online (Mikrono)",
