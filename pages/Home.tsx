@@ -9,24 +9,37 @@ const Home: React.FC = () => {
   const t = CONTENT[language].home;
   const tNav = CONTENT[language].nav;
 
+  // SVG Noise pattern for the grain effect
+  const noisePattern = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")`;
+
   return (
     <div className="flex flex-col h-full">
       {/* 50/50 Split Header Section - Full viewport height minus nav on desktop */}
-      <section className="flex flex-col md:flex-row min-h-[calc(100vh-5rem)] md:h-[600px] bg-white">
+      <section className="flex flex-col md:flex-row min-h-[calc(100vh-5rem)] md:h-[650px] bg-white">
         
         {/* Left: Image (50%) */}
-        <div className="w-full md:w-1/2 h-64 md:h-auto relative overflow-hidden bg-slate-50 order-1">
+        <div className="w-full md:w-1/2 h-[50vh] md:h-auto relative overflow-hidden bg-slate-50 order-1">
           <img 
             src="https://media.publit.io/file/w_2048/IMG-0175-k.jpeg" 
             alt="Dr Rémi Dewispelaere" 
-            className="absolute inset-0 w-full h-full object-cover object-center blur-[1px]"
+            className="absolute inset-0 w-full h-full object-cover object-top md:object-center saturate-[0.3] contrast-[1.1]"
           />
-          {/* Cold Tone Overlay */}
-          <div className="absolute inset-0 bg-slate-900/10 mix-blend-multiply pointer-events-none"></div>
+          
+          {/* Grain / Texture Overlay */}
+          <div 
+            className="absolute inset-0 opacity-[0.20] mix-blend-overlay pointer-events-none"
+            style={{ backgroundImage: noisePattern }}
+          ></div>
+
+          {/* Gradient Fades (Fondu) */}
+          {/* Mobile: Fade to bottom (white) */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white md:hidden"></div>
+          {/* Desktop: Fade to right (white) */}
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white"></div>
         </div>
 
         {/* Right: Text (50%) */}
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:p-16 lg:p-24 bg-white order-2">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:p-16 lg:p-24 bg-white order-2 relative z-10">
           <div className="max-w-md">
             <h2 className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">
               {t.hero.subtitle}
