@@ -22,7 +22,7 @@ const Home: React.FC = () => {
           <img 
             src="https://media.publit.io/file/w_2048/IMG-0175-k.jpeg" 
             alt="Dr Rémi Dewispelaere" 
-            className="absolute inset-0 w-full h-full object-cover object-top md:object-center saturate-[0.3] contrast-[1.1]"
+            className="absolute inset-0 w-full h-full object-cover object-top md:object-center"
           />
           
           {/* Grain / Texture Overlay */}
