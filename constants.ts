@@ -16,7 +16,7 @@ export const CONTENT: Record<string, SiteContent> = {
     },
     home: {
       hero: {
-        title: "Dr Rémi Dewispelaere",
+        title: "Dr Remi Dewispelaere",
         subtitle: "Chirurgie Ophtalmologique & Vitréo-Rétinienne",
         cta: "Prendre Rendez-vous"
       },
@@ -113,15 +113,15 @@ export const CONTENT: Record<string, SiteContent> = {
           city: "Wavre",
           address: "Chaussée de Louvain 43/2, 1300 Wavre",
           phone: "+32 10 41 28 01",
-          mikronoLink: "https://www.mikrono.com", 
+          mikronoLink: "https://leverseau.mikrono.com/", 
           mikronoText: "Prendre RDV (Mikrono)"
         },
         messidor: {
           title: "Messidor Eye Center",
           city: "Uccle",
-          address: "Avenue de Messidor 215, 1180 Uccle",
+          address: "Avenue de Messidor 213, 1180 Uccle",
           phone: "+32 2 346 68 02",
-          mikronoLink: "https://www.mikrono.com", 
+          mikronoLink: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=fr", 
           mikronoText: "Prendre RDV (Mikrono)"
         },
         referral: {
@@ -161,16 +161,16 @@ export const CONTENT: Record<string, SiteContent> = {
           hours: "Mercredi : Toute la journée",
           map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2527.498664687665!2d4.5986873!3d50.6923483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c17d7b27563069%3A0xb35994262142750e!2sClinique%20Le%20Verseau!5e0!3m2!1sfr!2sbe",
           mikrono_text: "Prendre RDV (Mikrono)",
-          mikrono_link: "https://www.mikrono.com"
+          mikrono_link: "https://leverseau.mikrono.com/"
         },
         {
           name: "Messidor Eye Center",
-          address: "Avenue de Messidor 215, 1180 Uccle",
+          address: "Avenue de Messidor 213, 1180 Uccle",
           phone: "+32 2 346 68 02",
           hours: "Mardi : Après-midi",
           map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.0371302868843!2d4.3499!3d50.8166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c45744390069%3A0x6676067006830706!2sMessidor%20Eye%20Center!5e0!3m2!1sfr!2sbe",
           mikrono_text: "Prendre RDV (Mikrono)",
-          mikrono_link: "https://www.mikrono.com"
+          mikrono_link: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=fr"
         }
       ],
       surgery_locations: [
@@ -186,7 +186,7 @@ export const CONTENT: Record<string, SiteContent> = {
     },
     legal: {
       title: "Mentions Légales",
-      content: "Ce site est un site d'information médicale destiné au grand public. Il respecte la charte de déontologie médicale belge. Responsable de la publication : Dr Rémi Dewispelaere. Numéro INAMI disponible sur demande. Hébergement sécurisé."
+      content: "Ce site est un site d'information médicale destiné au grand public. Il respecte la charte de déontologie médicale belge. Responsable de la publication : Dr Remi Dewispelaere. Numéro INAMI disponible sur demande. Hébergement sécurisé."
     },
     privacy: {
       title: "Politique de Confidentialité",
@@ -208,7 +208,7 @@ export const CONTENT: Record<string, SiteContent> = {
     },
     home: {
       hero: {
-        title: "Dr Rémi Dewispelaere",
+        title: "Dr Remi Dewispelaere",
         subtitle: "Ophthalmological & Vitreo-Retinal Surgery",
         cta: "Book an Appointment"
       },
@@ -305,15 +305,15 @@ export const CONTENT: Record<string, SiteContent> = {
           city: "Wavre",
           address: "Chaussée de Louvain 43/2, 1300 Wavre",
           phone: "+32 10 41 28 01",
-          mikronoLink: "https://www.mikrono.com",
+          mikronoLink: "https://leverseau.mikrono.com/",
           mikronoText: "Book Online (Mikrono)"
         },
         messidor: {
           title: "Messidor Eye Center",
           city: "Uccle",
-          address: "Avenue de Messidor 215, 1180 Uccle",
+          address: "Avenue de Messidor 213, 1180 Uccle",
           phone: "+32 2 346 68 02",
-          mikronoLink: "https://www.mikrono.com",
+          mikronoLink: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=en",
           mikronoText: "Book Online (Mikrono)"
         },
         referral: {
@@ -353,16 +353,16 @@ export const CONTENT: Record<string, SiteContent> = {
           hours: "Wednesday: All day",
           map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2527.498664687665!2d4.5986873!3d50.6923483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c17d7b27563069%3A0xb35994262142750e!2sClinique%20Le%20Verseau!5e0!3m2!1sfr!2sbe",
           mikrono_text: "Book Online (Mikrono)",
-          mikrono_link: "https://www.mikrono.com"
+          mikrono_link: "https://leverseau.mikrono.com/"
         },
         {
           name: "Messidor Eye Center",
-          address: "Avenue de Messidor 215, 1180 Uccle",
+          address: "Avenue de Messidor 213, 1180 Uccle",
           phone: "+32 2 346 68 02",
           hours: "Tuesday: Afternoon",
           map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.0371302868843!2d4.3499!3d50.8166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c45744390069%3A0x6676067006830706!2sMessidor%20Eye%20Center!5e0!3m2!1sfr!2sbe",
           mikrono_text: "Book Online (Mikrono)",
-          mikrono_link: "https://www.mikrono.com"
+          mikrono_link: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=en"
         }
       ],
       surgery_locations: [
@@ -378,7 +378,7 @@ export const CONTENT: Record<string, SiteContent> = {
     },
     legal: {
       title: "Legal Notice",
-      content: "This site is a medical information site intended for the general public. It respects the Belgian medical code of ethics. Publisher: Dr. Rémi Dewispelaere. INAMI number available on request. Secure hosting."
+      content: "This site is a medical information site intended for the general public. It respects the Belgian medical code of ethics. Publisher: Dr. Remi Dewispelaere. INAMI number available on request. Secure hosting."
     },
     privacy: {
       title: "Privacy Policy",

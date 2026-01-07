@@ -53,7 +53,7 @@ const Layout: React.FC = () => {
           <div className="flex justify-between h-20">
             <div className="flex items-center">
               <Link to="/" className="flex flex-col" onClick={closeMenu}>
-                <span className="text-xl font-semibold text-slate-900 tracking-tight">Dr Rémi Dewispelaere</span>
+                <span className="text-xl font-semibold text-slate-900 tracking-tight">Dr Remi Dewispelaere</span>
                 <span className="text-xs text-slate-500 uppercase tracking-widest">Ophtalmologie</span>
               </Link>
             </div>
@@ -147,7 +147,7 @@ const Layout: React.FC = () => {
           </div>
           <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-xs text-slate-400">
-              &copy; {new Date().getFullYear()} Dr Rémi Dewispelaere.
+              &copy; {new Date().getFullYear()} Dr Remi Dewispelaere.
             </p>
             <p className="text-xs text-slate-400 mt-2 md:mt-0">
                {language === 'fr' ? 'Site d\'information médicale' : 'Medical information website'}
