@@ -30,7 +30,7 @@ export const CONTENT: Record<string, SiteContent> = {
       diplomas: [
         "Spécialiste en ophtalmologie (ULB, Plus Grande Distinction)",
         "Fellow of the European Board of Ophthalmology (EBO, Paris – 2014)",
-        "Plus de 10 ans d’expertise en chirurgie intra-oculaire",
+        "Chef de Clinique Adjoint au CHU Saint-Pierre",
         "Responsable du cours de chirurgie ophtalmologique à la faculté de médecine – ULB"
       ],
       specializations: [
@@ -38,8 +38,12 @@ export const CONTENT: Record<string, SiteContent> = {
         "Chirurgie vitréo-rétinienne (rétine et vitré)"
       ],
       activities: [
-        "Chirurgien à fort volume (> 400 chirurgies de la cataracte/an)",
-        "Pratique régulière de la chirurgie vitréo-rétinienne (vitrectomies 25G)"
+        "Le Docteur Dewispelaere peut se prévaloir de 10 ans d'expérience en chirurgie intra-oculaire.",
+        "Au cours de ces années, il a participé activement à la formation de nombreux chirurgiens bruxellois.",
+        "Il réalise actuellement plus de 500 chirurgies par an dans ses domaines de compétence - cataracte et vitrectomie.",
+        "Les cas les plus lourds sont opérés à l'hôpital Saint-Pierre.",
+        "Les cas qui nécessitent une approche plus personnalisée sont opérés dans les cliniques privées du Verseau et du Solbosch.",
+        "Le Docteur Dewispelaere s'engage régulièrement dans des missions humanitaires en République démocratique du Congo."
       ],
       disclaimer: "Le docteur ne réalise pas de consultations de dépistage ni de consultations pour lunettes.",
       positions: [
@@ -159,7 +163,7 @@ export const CONTENT: Record<string, SiteContent> = {
           address: "Chaussée de Louvain 43/2, 1300 Wavre",
           phone: "+32 10 41 28 01",
           hours: "Mercredi : Toute la journée",
-          map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2527.498664687665!2d4.5986873!3d50.6923483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c17d7b27563069%3A0xb35994262142750e!2sClinique%20Le%20Verseau!5e0!3m2!1sfr!2sbe",
+          map_url: "https://maps.google.com/maps?q=Clinique+Le+Verseau,+Chauss%C3%A9e+de+Louvain+43,+1300+Wavre&t=&z=15&ie=UTF8&iwloc=&output=embed",
           mikrono_text: "Prendre RDV (Mikrono)",
           mikrono_link: "https://leverseau.mikrono.com/"
         },
@@ -168,12 +172,16 @@ export const CONTENT: Record<string, SiteContent> = {
           address: "Avenue de Messidor 213, 1180 Uccle",
           phone: "+32 2 318 12 12",
           hours: "Mardi : Après-midi",
-          map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.0371302868843!2d4.3499!3d50.8166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c45744390069%3A0x6676067006830706!2sMessidor%20Eye%20Center!5e0!3m2!1sfr!2sbe",
+          map_url: "https://maps.google.com/maps?q=Messidor+Eye+Center,+Avenue+de+Messidor+213,+1180+Uccle&t=&z=15&ie=UTF8&iwloc=&output=embed",
           mikrono_text: "Prendre RDV (Mikrono)",
           mikrono_link: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=fr"
         }
       ],
       surgery_locations: [
+        {
+          name: "Clinique Le Verseau – Wavre",
+          phone: "+32 10 41 28 01"
+        },
         {
           name: "Solbosch Eye Clinic",
           phone: "+32 2 648 10 88"
@@ -222,7 +230,7 @@ export const CONTENT: Record<string, SiteContent> = {
       diplomas: [
         "Specialist in Ophthalmology (ULB, Highest Distinction)",
         "Fellow of the European Board of Ophthalmology (EBO, Paris – 2014)",
-        "Over 10 years of expertise in intraocular surgery",
+        "Deputy Head of Clinic at CHU Saint-Pierre",
         "Lecturer in Ophthalmic Surgery at the Faculty of Medicine – ULB"
       ],
       specializations: [
@@ -230,8 +238,12 @@ export const CONTENT: Record<string, SiteContent> = {
         "Vitreo-retinal Surgery (Retina and Vitreous)"
       ],
       activities: [
-        "High-volume surgeon (> 400 cataract surgeries/year)",
-        "Regular practice of vitreo-retinal surgery (25G vitrectomies)"
+        "Dr. Dewispelaere boasts 10 years of experience in intraocular surgery.",
+        "Over these years, he has actively participated in the training of numerous Brussels surgeons.",
+        "He currently performs over 500 surgeries per year in his fields of expertise - cataract and vitrectomy.",
+        "Complex cases are operated on at Saint-Pierre Hospital.",
+        "Cases requiring a more personalized approach are performed at the private clinics Le Verseau and Solbosch.",
+        "Dr. Dewispelaere regularly engages in humanitarian missions in the Democratic Republic of the Congo."
       ],
       disclaimer: "The doctor does not perform screening consultations or consultations for glasses.",
       positions: [
@@ -351,7 +363,7 @@ export const CONTENT: Record<string, SiteContent> = {
           address: "Chaussée de Louvain 43/2, 1300 Wavre",
           phone: "+32 10 41 28 01",
           hours: "Wednesday: All day",
-          map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2527.498664687665!2d4.5986873!3d50.6923483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c17d7b27563069%3A0xb35994262142750e!2sClinique%20Le%20Verseau!5e0!3m2!1sfr!2sbe",
+          map_url: "https://maps.google.com/maps?q=Clinique+Le+Verseau,+Chauss%C3%A9e+de+Louvain+43,+1300+Wavre&t=&z=15&ie=UTF8&iwloc=&output=embed",
           mikrono_text: "Book Online (Mikrono)",
           mikrono_link: "https://leverseau.mikrono.com/"
         },
@@ -360,12 +372,16 @@ export const CONTENT: Record<string, SiteContent> = {
           address: "Avenue de Messidor 213, 1180 Uccle",
           phone: "+32 2 318 12 12",
           hours: "Tuesday: Afternoon",
-          map_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.0371302868843!2d4.3499!3d50.8166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c45744390069%3A0x6676067006830706!2sMessidor%20Eye%20Center!5e0!3m2!1sfr!2sbe",
+          map_url: "https://maps.google.com/maps?q=Messidor+Eye+Center,+Avenue+de+Messidor+213,+1180+Uccle&t=&z=15&ie=UTF8&iwloc=&output=embed",
           mikrono_text: "Book Online (Mikrono)",
           mikrono_link: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=en"
         }
       ],
       surgery_locations: [
+        {
+          name: "Clinique Le Verseau – Wavre",
+          phone: "+32 10 41 28 01"
+        },
         {
           name: "Solbosch Eye Clinic",
           phone: "+32 2 648 10 88"
