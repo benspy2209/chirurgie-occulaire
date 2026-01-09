@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useLanguage } from './LanguageContext';
 import { useContent } from './ContentContext';
-import { Menu, X, Globe, MapPin } from 'lucide-react';
+import { Menu, X, Globe, MapPin, Lock } from 'lucide-react';
 
 const Layout: React.FC = () => {
   const { language, setLanguage } = useLanguage();
@@ -147,9 +147,15 @@ const Layout: React.FC = () => {
             </div>
           </div>
           <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-xs text-slate-400">
-              &copy; {new Date().getFullYear()} Dr Remi Dewispelaere.
-            </p>
+            <div className="flex items-center">
+              <p className="text-xs text-slate-400">
+                &copy; {new Date().getFullYear()} Dr Remi Dewispelaere.
+              </p>
+              {/* Discreet Admin Lock */}
+              <Link to="/admin" className="opacity-20 hover:opacity-100 transition-opacity ml-2 text-slate-500" title="Admin">
+                <Lock className="w-3 h-3" />
+              </Link>
+            </div>
             <p className="text-xs text-slate-400 mt-2 md:mt-0">
                {language === 'fr' ? 'Site d\'information médicale' : 'Medical information website'}
             </p>

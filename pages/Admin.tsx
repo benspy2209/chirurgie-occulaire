@@ -154,6 +154,14 @@ const Admin: React.FC = () => {
     }
   };
 
+  const scrollToSection = (e: React.MouseEvent, sectionId: string) => {
+      e.preventDefault();
+      const element = document.getElementById(`section-${sectionId}`);
+      if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+  };
+
   // --- RENDERING ---
 
   if (!session) {
@@ -469,13 +477,13 @@ const Admin: React.FC = () => {
                 <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Sections</h3>
                 <nav className="space-y-1">
                   {editData && editData[activeTab] && Object.keys(editData[activeTab]).map(key => (
-                    <a 
+                    <button 
                       key={key} 
-                      href={`#section-${key}`} 
-                      className="block px-3 py-2 text-sm text-slate-600 rounded hover:bg-gray-50 hover:text-slate-900 capitalize"
+                      onClick={(e) => scrollToSection(e, key)}
+                      className="block w-full text-left px-3 py-2 text-sm text-slate-600 rounded hover:bg-gray-50 hover:text-slate-900 capitalize focus:outline-none"
                     >
                       {key}
-                    </a>
+                    </button>
                   ))}
                 </nav>
               </div>

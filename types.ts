@@ -25,6 +25,7 @@ export interface SiteContent {
       title: string;
       subtitle: string;
       cta: string;
+      image: string;
     };
     intro: {
       title: string;

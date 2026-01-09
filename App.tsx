@@ -37,13 +37,16 @@ interface ErrorBoundaryState {
 }
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  public state: ErrorBoundaryState = { hasError: false, error: null };
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
 
-  public static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { hasError: true, error };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("React Error Boundary caught:", error, errorInfo);
   }
 
@@ -79,6 +82,10 @@ const App: React.FC = () => {
           <HashRouter>
             <ScrollToTop />
             <Routes>
+              {/* Route Admin sortie du Layout principal pour être indépendante */}
+              <Route path="/admin" element={<Admin />} />
+
+              {/* Routes publiques avec le Layout (Header/Footer) */}
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
                 <Route path="presentation" element={<Surgeon />} />
@@ -91,7 +98,6 @@ const App: React.FC = () => {
                 <Route path="lieux" element={<Contact />} />
                 <Route path="mentions-legales" element={<Legal />} />
                 <Route path="politique-confidentialite" element={<Privacy />} />
-                <Route path="admin" element={<Admin />} />
               </Route>
             </Routes>
           </HashRouter>

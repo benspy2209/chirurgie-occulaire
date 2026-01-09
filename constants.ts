@@ -18,7 +18,8 @@ export const CONTENT: Record<string, SiteContent> = {
       hero: {
         title: "Dr Remi Dewispelaere",
         subtitle: "Chirurgie Ophtalmologique & Vitréo-Rétinienne",
-        cta: "Prendre Rendez-vous"
+        cta: "Prendre Rendez-vous",
+        image: "https://media.publit.io/file/w_2048/IMG-0175-k.jpeg"
       },
       intro: {
         title: "Expertise et Rigueur Médicale",
@@ -218,7 +219,8 @@ export const CONTENT: Record<string, SiteContent> = {
       hero: {
         title: "Dr Remi Dewispelaere",
         subtitle: "Ophthalmological & Vitreo-Retinal Surgery",
-        cta: "Book an Appointment"
+        cta: "Book an Appointment",
+        image: "https://media.publit.io/file/w_2048/IMG-0175-k.jpeg"
       },
       intro: {
         title: "Expertise and Medical Rigor",

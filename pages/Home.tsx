@@ -22,7 +22,7 @@ const Home: React.FC = () => {
         {/* Left: Image (50%) */}
         <div className="w-full md:w-1/2 h-[50vh] md:h-auto relative overflow-hidden bg-slate-50 order-1">
           <img 
-            src="https://media.publit.io/file/w_2048/IMG-0175-k.jpeg" 
+            src={t.hero.image} 
             alt="Dr Remi Dewispelaere" 
             className="absolute inset-0 w-full h-full object-cover object-top md:object-center"
           />
