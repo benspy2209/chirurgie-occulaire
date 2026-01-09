@@ -1,5 +1,5 @@
 import React, { ReactNode, ErrorInfo } from 'react';
-import { MemoryRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './components/LanguageContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -77,7 +77,7 @@ const App: React.FC = () => {
   return (
     <ErrorBoundary>
       <LanguageProvider>
-        <MemoryRouter>
+        <BrowserRouter>
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Layout />}>
@@ -94,7 +94,7 @@ const App: React.FC = () => {
               <Route path="politique-confidentialite" element={<Privacy />} />
             </Route>
           </Routes>
-        </MemoryRouter>
+        </BrowserRouter>
       </LanguageProvider>
     </ErrorBoundary>
   );
