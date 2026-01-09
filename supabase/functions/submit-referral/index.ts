@@ -6,6 +6,7 @@ declare const Deno: any;
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
 }
 
 serve(async (req) => {
@@ -15,19 +16,23 @@ serve(async (req) => {
   }
 
   try {
+    // Check if Request Body is empty before trying to parse
+    // This helps debug network issues vs logic issues
+    if (!req.body) {
+        throw new Error("Request body is empty");
+    }
+
     const formData = await req.formData()
     const file = formData.get('file') as File
 
     if (!file) throw new Error('No file uploaded')
     
     // 1. Validate File Size (Max 10MB)
-    // Edge functions have memory limits, but 10MB stream is manageable usually.
     if (file.size > 10 * 1024 * 1024) {
       throw new Error('File too large (max 10MB)')
     }
 
     // 2. Validate File Type (Binary Magic Bytes Check)
-    // We read the first 4 bytes to ensure it is a PDF (%PDF)
     const fileBuffer = await file.arrayBuffer()
     const bytes = new Uint8Array(fileBuffer.slice(0, 4))
     const isPdf = bytes[0] === 0x25 && bytes[1] === 0x50 && bytes[2] === 0x44 && bytes[3] === 0x46
@@ -36,13 +41,12 @@ serve(async (req) => {
       throw new Error('Invalid file format. Only PDF files are accepted.')
     }
 
-    // Initialize Supabase Admin Client (Service Role)
-    // This allows writing to the private bucket and DB even with strict RLS
+    // Initialize Supabase Admin Client
     const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? ''
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
-    // 3. Upload to Storage (Private Bucket 'referrals')
+    // 3. Upload to Storage
     const name = formData.get('name') as string
     const sanitizedName = name.replace(/[^a-z0-9]/gi, '_').toLowerCase()
     const timestamp = Date.now()
@@ -76,7 +80,6 @@ serve(async (req) => {
     // 5. Send Email via Resend
     const resendApiKey = Deno.env.get('RESEND_API_KEY')
     if (resendApiKey) {
-      // Generate a temporary signed URL for the doctor (valid 7 days)
       const { data: signedUrlData } = await supabase.storage
         .from('referrals')
         .createSignedUrl(storageData.path, 60 * 60 * 24 * 7)
@@ -85,9 +88,8 @@ serve(async (req) => {
         ? `<a href="${signedUrlData.signedUrl}" style="color: #0f172a; font-weight: bold;">Télécharger le dossier (PDF)</a>` 
         : '<em>Fichier disponible dans le dashboard sécurisé.</em>'
 
-      // Use environment variable for destination or fallback to a default for safety
       const doctorEmail = Deno.env.get('DOCTOR_EMAIL') || 'doctor@example.com'
-      const fromEmail = 'Referral System <onboarding@resend.dev>' // Should be configured with verified domain
+      const fromEmail = 'Referral System <onboarding@resend.dev>'
 
       await fetch('https://api.resend.com/emails', {
         method: 'POST',
@@ -127,6 +129,7 @@ serve(async (req) => {
     )
 
   } catch (error: any) {
+    console.error("Edge Function Error:", error);
     return new Response(
       JSON.stringify({ error: error.message || String(error) }),
       { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }

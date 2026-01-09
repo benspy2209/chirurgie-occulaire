@@ -33,7 +33,7 @@ const Referral: React.FC = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
-      // Basic client-side validation (UX only, real validation is on server)
+      // Basic client-side validation
       if (selectedFile.type !== 'application/pdf') {
         alert(language === 'fr' ? "Format PDF uniquement" : "PDF format only");
         return;
@@ -64,19 +64,23 @@ const Referral: React.FC = () => {
       submissionData.append('email', formData.email);
       submissionData.append('message', formData.message || '');
 
+      console.log('Starting submission to Supabase Edge Function...');
+
       // Invoke Supabase Edge Function
       const { data, error } = await supabase.functions.invoke('submit-referral', {
         body: submissionData,
       });
 
       if (error) {
+        console.error("Supabase Invoke Error Details:", error);
         // If the function returns a 400/500, it comes here
         let message = error.message;
         try {
             // Try to parse the custom error message from the function if available
-            const context = await error.context; 
-            if (context && typeof context === 'object' && 'error' in context) {
-                 message = (context as any).error;
+            // Note: supabase-js sometimes wraps the response body in `context` or `error` property
+            if (error.context && typeof error.context.json === 'function') {
+                const json = await error.context.json();
+                if (json.error) message = json.error;
             }
         } catch (e) {
             // Ignore parsing error
@@ -84,16 +88,30 @@ const Referral: React.FC = () => {
         throw new Error(message || 'Submission failed');
       }
 
-      // Success
+      console.log('Submission successful:', data);
       setIsSubmitted(true);
 
     } catch (error: any) {
-      console.error('Error submitting form:', error);
-      setErrorMsg(
-        language === 'fr' 
-          ? "Une erreur est survenue lors de l'envoi sécurisé. Veuillez réessayer." 
-          : "An error occurred during secure transmission. Please try again."
-      );
+      console.error('FULL Error submitting form:', error);
+      
+      // Check for specific "Failed to send a request" which usually means bad URL or Network blocked
+      let displayMsg = language === 'fr' 
+          ? "Une erreur technique est survenue. Veuillez réessayer." 
+          : "A technical error occurred. Please try again.";
+
+      if (error.message && error.message.includes('Failed to send a request')) {
+        displayMsg = language === 'fr'
+          ? "Impossible de contacter le serveur. Vérifiez votre connexion."
+          : "Could not contact server. Check connection.";
+        
+        // Hint for developer in console
+        console.warn("HINT: This usually means VITE_SUPABASE_URL is missing in Production or CORS failed.");
+      } else if (error.message) {
+         // Show specific backend error if safe
+         // displayMsg = `${displayMsg} (${error.message})`;
+      }
+
+      setErrorMsg(displayMsg);
     } finally {
       setIsLoading(false);
     }
@@ -134,7 +152,10 @@ const Referral: React.FC = () => {
         {errorMsg && (
           <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded flex items-start">
             <AlertTriangle className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" />
-            <p className="text-red-700 text-sm">{errorMsg}</p>
+            <div className="flex-1">
+                <p className="text-red-700 text-sm font-medium">{errorMsg}</p>
+                <p className="text-red-500 text-xs mt-1">Si le problème persiste, contactez le secrétariat par téléphone.</p>
+            </div>
           </div>
         )}
 

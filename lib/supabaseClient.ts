@@ -1,20 +1,24 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from "@supabase/supabase-js";
 
-// Helper to safely get env vars without crashing if import.meta.env is undefined
-const getEnv = (key: string) => {
-  const meta = import.meta as any;
-  return meta.env?.[key];
-};
+// ⚠️ ACCÈS DIRECT ET STATIQUE (OBLIGATOIRE POUR VITE)
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-const supabaseUrl = getEnv('VITE_SUPABASE_URL');
-const supabaseAnonKey = getEnv('VITE_SUPABASE_ANON_KEY');
+// Diagnostic clair
+console.log("Supabase Config Check:", {
+  hasUrl: !!supabaseUrl,
+  hasKey: !!supabaseAnonKey,
+  urlPrefix: supabaseUrl ? supabaseUrl.slice(0, 15) + "..." : "MISSING",
+});
 
+// 🔴 En prod, on NE CONTINUE PAS sans config valide
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('Supabase URL or Anon Key is missing. Check your .env file.');
+  throw new Error(
+    "CRITICAL: Supabase environment variables are missing. Check Netlify Environment Variables."
+  );
 }
 
-// Initialize client with fallbacks to prevent runtime crash "URL is required"
 export const supabase = createClient(
-  supabaseUrl || 'https://placeholder.supabase.co', 
-  supabaseAnonKey || 'placeholder'
+  supabaseUrl,
+  supabaseAnonKey
 );
