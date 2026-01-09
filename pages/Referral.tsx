@@ -77,6 +77,7 @@ const Referral: React.FC = () => {
         console.error("Supabase Invoke Error Details:", error);
         let message = error.message;
         try {
+            // Attempt to parse JSON error response from function
             if (error.context && typeof error.context.json === 'function') {
                 const json = await error.context.json();
                 if (json.error) message = json.error;
@@ -98,7 +99,7 @@ const Referral: React.FC = () => {
           ? "Une erreur technique est survenue." 
           : "A technical error occurred.";
 
-      // Check for common network/CORS/Fetch errors
+      // Detect Network/CORS errors to show specific message + fallback
       const errString = error.message ? error.message.toString() : String(error);
       
       if (
@@ -112,17 +113,20 @@ const Referral: React.FC = () => {
           ? "Impossible de contacter le serveur sécurisé (Erreur connexion ou pare-feu)."
           : "Could not contact secure server (Connection or Firewall error).";
         
-        // Show fallback email option immediately
+        // IMMEDIATE FALLBACK for network issues
         setShowFallback(true);
       } else {
-        // For other errors (e.g. file size on server, etc), also offer fallback
+        // Fallback for other errors too (logic errors, file size, etc)
         setShowFallback(true);
       }
 
       setErrorMsg(displayMsg);
-      // Scroll to error
-      const errorDiv = document.getElementById('error-container');
-      if (errorDiv) errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      setTimeout(() => {
+        const errorDiv = document.getElementById('error-container');
+        if (errorDiv) errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+
     } finally {
       setIsLoading(false);
     }
@@ -174,6 +178,7 @@ const Referral: React.FC = () => {
                     <p className="text-slate-700 text-sm mb-3 font-medium">
                         {language === 'fr' ? "Solution de secours (Recommandée) :" : "Alternative solution (Recommended):"}
                     </p>
+                    {/* Mailto link pre-fills subject and body for convenience */}
                     <a 
                       href={`mailto:secretariat@cliniqueleverseau.be?subject=Reference Patient: ${formData.name}&body=Nom: ${formData.name}%0D%0ATelephone: ${formData.phone}%0D%0AMessage: ${formData.message}`}
                       className="inline-flex items-center text-slate-900 bg-white border border-slate-300 px-4 py-2 rounded text-sm hover:bg-slate-50 transition-colors shadow-sm"

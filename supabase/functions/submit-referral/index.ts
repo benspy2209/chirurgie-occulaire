@@ -11,7 +11,7 @@ const corsHeaders = {
 
 serve(async (req) => {
   // 1. Handle CORS Preflight Request immediately
-  // We return 200 OK (instead of 204) to ensure maximum compatibility with proxies/gateways
+  // CRITICAL: Return 200 OK (not 204) to satisfy most proxies and browsers
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders, status: 200 })
   }
@@ -128,7 +128,6 @@ serve(async (req) => {
           })
         })
       } catch (emailError) {
-        // Log email error but do not fail the request since data is saved
         console.error("Email sending failed:", emailError);
       }
     }
