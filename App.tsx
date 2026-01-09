@@ -1,5 +1,5 @@
-import React, { Component, ReactNode, ErrorInfo } from 'react';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import React, { ReactNode, ErrorInfo, Component } from 'react';
+import { MemoryRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './components/LanguageContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -35,10 +35,10 @@ interface ErrorBoundaryState {
 }
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  public state: ErrorBoundaryState = {
-    hasError: false,
-    error: null
-  };
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { hasError: true, error };
@@ -59,10 +59,10 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
               {this.state.error?.message}
             </pre>
             <button 
-              onClick={() => window.location.reload()}
+              onClick={() => this.setState({ hasError: false, error: null })} 
               className="w-full bg-slate-900 text-white py-2 px-4 rounded hover:bg-slate-800"
             >
-              Recharger la page
+              Réessayer
             </button>
           </div>
         </div>
@@ -76,7 +76,7 @@ const App: React.FC = () => {
   return (
     <ErrorBoundary>
       <LanguageProvider>
-        <HashRouter>
+        <MemoryRouter>
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Layout />}>
@@ -93,7 +93,7 @@ const App: React.FC = () => {
               <Route path="politique-confidentialite" element={<Privacy />} />
             </Route>
           </Routes>
-        </HashRouter>
+        </MemoryRouter>
       </LanguageProvider>
     </ErrorBoundary>
   );
