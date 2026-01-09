@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../components/LanguageContext';
 import { CONTENT } from '../constants';
-import { Upload, CheckCircle, AlertCircle, AlertTriangle } from 'lucide-react';
+import { Upload, CheckCircle, AlertCircle, AlertTriangle, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 
@@ -11,6 +11,7 @@ const Referral: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [showFallback, setShowFallback] = useState(false);
   const [file, setFile] = useState<File | null>(null);
 
   // Form states
@@ -52,6 +53,7 @@ const Referral: React.FC = () => {
 
     setIsLoading(true);
     setErrorMsg(null);
+    setShowFallback(false);
 
     try {
       // Create FormData to send to Edge Function
@@ -73,11 +75,8 @@ const Referral: React.FC = () => {
 
       if (error) {
         console.error("Supabase Invoke Error Details:", error);
-        // If the function returns a 400/500, it comes here
         let message = error.message;
         try {
-            // Try to parse the custom error message from the function if available
-            // Note: supabase-js sometimes wraps the response body in `context` or `error` property
             if (error.context && typeof error.context.json === 'function') {
                 const json = await error.context.json();
                 if (json.error) message = json.error;
@@ -94,21 +93,21 @@ const Referral: React.FC = () => {
     } catch (error: any) {
       console.error('FULL Error submitting form:', error);
       
-      // Check for specific "Failed to send a request" which usually means bad URL or Network blocked
       let displayMsg = language === 'fr' 
-          ? "Une erreur technique est survenue. Veuillez réessayer." 
-          : "A technical error occurred. Please try again.";
+          ? "Une erreur technique est survenue." 
+          : "A technical error occurred.";
 
-      if (error.message && error.message.includes('Failed to send a request')) {
+      // Handle common network/CORS errors
+      if (error.message && (error.message.includes('Failed to send a request') || error.message.includes('405'))) {
         displayMsg = language === 'fr'
-          ? "Impossible de contacter le serveur. Vérifiez votre connexion."
-          : "Could not contact server. Check connection.";
+          ? "Impossible de contacter le serveur sécurisé (Erreur connexion ou pare-feu)."
+          : "Could not contact secure server (Connection or Firewall error).";
         
-        // Hint for developer in console
-        console.warn("HINT: This usually means VITE_SUPABASE_URL is missing in Production or CORS failed.");
-      } else if (error.message) {
-         // Show specific backend error if safe
-         // displayMsg = `${displayMsg} (${error.message})`;
+        // Show fallback email option
+        setShowFallback(true);
+      } else {
+        // For other errors, also offer fallback
+        setShowFallback(true);
       }
 
       setErrorMsg(displayMsg);
@@ -150,12 +149,33 @@ const Referral: React.FC = () => {
         </p>
 
         {errorMsg && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded flex items-start">
-            <AlertTriangle className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" />
-            <div className="flex-1">
-                <p className="text-red-700 text-sm font-medium">{errorMsg}</p>
-                <p className="text-red-500 text-xs mt-1">Si le problème persiste, contactez le secrétariat par téléphone.</p>
-            </div>
+          <div className="mb-8 p-6 bg-red-50 border border-red-200 rounded-lg">
+             <div className="flex items-start mb-4">
+                <AlertTriangle className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" />
+                <div>
+                    <p className="text-red-800 font-medium">{errorMsg}</p>
+                </div>
+             </div>
+
+             {showFallback && (
+                <div className="mt-4 pt-4 border-t border-red-200">
+                    <p className="text-slate-700 text-sm mb-3 font-medium">
+                        {language === 'fr' ? "Solution de secours :" : "Alternative solution:"}
+                    </p>
+                    <a 
+                      href={`mailto:secretariat@cliniqueleverseau.be?subject=Reference Patient: ${formData.name}&body=Nom: ${formData.name}%0D%0ATelephone: ${formData.phone}%0D%0AMessage: ${formData.message}`}
+                      className="inline-flex items-center text-slate-900 bg-white border border-slate-300 px-4 py-2 rounded text-sm hover:bg-slate-50 transition-colors"
+                    >
+                        <Mail className="w-4 h-4 mr-2" />
+                        {language === 'fr' ? "Envoyer par email" : "Send by email"}
+                    </a>
+                    <p className="text-xs text-slate-500 mt-2">
+                        {language === 'fr' 
+                         ? "Veuillez joindre votre PDF directement à l'email." 
+                         : "Please attach your PDF directly to the email."}
+                    </p>
+                </div>
+             )}
           </div>
         )}
 

@@ -10,14 +10,13 @@ const corsHeaders = {
 }
 
 serve(async (req) => {
-  // Handle CORS preflight request
+  // 1. Handle CORS Preflight Request immediately
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
 
   try {
-    // Check if Request Body is empty before trying to parse
-    // This helps debug network issues vs logic issues
+    // Check if Request Body is empty
     if (!req.body) {
         throw new Error("Request body is empty");
     }
@@ -27,12 +26,12 @@ serve(async (req) => {
 
     if (!file) throw new Error('No file uploaded')
     
-    // 1. Validate File Size (Max 10MB)
+    // Validate File Size (Max 10MB)
     if (file.size > 10 * 1024 * 1024) {
       throw new Error('File too large (max 10MB)')
     }
 
-    // 2. Validate File Type (Binary Magic Bytes Check)
+    // Validate File Type (Binary Magic Bytes Check for PDF)
     const fileBuffer = await file.arrayBuffer()
     const bytes = new Uint8Array(fileBuffer.slice(0, 4))
     const isPdf = bytes[0] === 0x25 && bytes[1] === 0x50 && bytes[2] === 0x44 && bytes[3] === 0x46
@@ -46,7 +45,7 @@ serve(async (req) => {
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
-    // 3. Upload to Storage
+    // Upload to Storage
     const name = formData.get('name') as string
     const sanitizedName = name.replace(/[^a-z0-9]/gi, '_').toLowerCase()
     const timestamp = Date.now()
@@ -61,7 +60,7 @@ serve(async (req) => {
 
     if (storageError) throw new Error(`Storage Error: ${storageError.message}`)
 
-    // 4. Insert into Database
+    // Insert into Database
     const { error: dbError } = await supabase
       .from('referrals')
       .insert({
@@ -77,7 +76,7 @@ serve(async (req) => {
 
     if (dbError) throw new Error(`Database Error: ${dbError.message}`)
 
-    // 5. Send Email via Resend
+    // Send Email via Resend (Optional)
     const resendApiKey = Deno.env.get('RESEND_API_KEY')
     if (resendApiKey) {
       const { data: signedUrlData } = await supabase.storage
@@ -132,7 +131,10 @@ serve(async (req) => {
     console.error("Edge Function Error:", error);
     return new Response(
       JSON.stringify({ error: error.message || String(error) }),
-      { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { 
+        status: 400, 
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+      }
     )
   }
 })
