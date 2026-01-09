@@ -11,6 +11,9 @@ const Home: React.FC = () => {
   const t = content[language].home;
   const tNav = content[language].nav;
 
+  // Fallback image if database is empty/old
+  const heroImage = t.hero.image || "https://media.publit.io/file/w_2048/IMG-0175-k.jpeg";
+
   // SVG Noise pattern for the grain effect
   const noisePattern = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")`;
 
@@ -22,7 +25,7 @@ const Home: React.FC = () => {
         {/* Left: Image (50%) */}
         <div className="w-full md:w-1/2 h-[50vh] md:h-auto relative overflow-hidden bg-slate-50 order-1">
           <img 
-            src={t.hero.image} 
+            src={heroImage} 
             alt="Dr Remi Dewispelaere" 
             className="absolute inset-0 w-full h-full object-cover object-top md:object-center"
           />
