@@ -89,6 +89,7 @@ const Referral: React.FC = () => {
 
       console.log('Submission successful:', data);
       setIsSubmitted(true);
+      window.scrollTo(0, 0);
 
     } catch (error: any) {
       console.error('FULL Error submitting form:', error);
@@ -97,20 +98,31 @@ const Referral: React.FC = () => {
           ? "Une erreur technique est survenue." 
           : "A technical error occurred.";
 
-      // Handle common network/CORS errors
-      if (error.message && (error.message.includes('Failed to send a request') || error.message.includes('405'))) {
+      // Check for common network/CORS/Fetch errors
+      const errString = error.message ? error.message.toString() : String(error);
+      
+      if (
+        errString.includes('Failed to send a request') || 
+        errString.includes('405') ||
+        errString.includes('Failed to fetch') ||
+        errString.includes('NetworkError') ||
+        errString.includes('Load failed')
+      ) {
         displayMsg = language === 'fr'
           ? "Impossible de contacter le serveur sécurisé (Erreur connexion ou pare-feu)."
           : "Could not contact secure server (Connection or Firewall error).";
         
-        // Show fallback email option
+        // Show fallback email option immediately
         setShowFallback(true);
       } else {
-        // For other errors, also offer fallback
+        // For other errors (e.g. file size on server, etc), also offer fallback
         setShowFallback(true);
       }
 
       setErrorMsg(displayMsg);
+      // Scroll to error
+      const errorDiv = document.getElementById('error-container');
+      if (errorDiv) errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } finally {
       setIsLoading(false);
     }
@@ -149,7 +161,7 @@ const Referral: React.FC = () => {
         </p>
 
         {errorMsg && (
-          <div className="mb-8 p-6 bg-red-50 border border-red-200 rounded-lg">
+          <div id="error-container" className="mb-8 p-6 bg-red-50 border border-red-200 rounded-lg animate-in fade-in duration-300">
              <div className="flex items-start mb-4">
                 <AlertTriangle className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" />
                 <div>
@@ -160,11 +172,11 @@ const Referral: React.FC = () => {
              {showFallback && (
                 <div className="mt-4 pt-4 border-t border-red-200">
                     <p className="text-slate-700 text-sm mb-3 font-medium">
-                        {language === 'fr' ? "Solution de secours :" : "Alternative solution:"}
+                        {language === 'fr' ? "Solution de secours (Recommandée) :" : "Alternative solution (Recommended):"}
                     </p>
                     <a 
                       href={`mailto:secretariat@cliniqueleverseau.be?subject=Reference Patient: ${formData.name}&body=Nom: ${formData.name}%0D%0ATelephone: ${formData.phone}%0D%0AMessage: ${formData.message}`}
-                      className="inline-flex items-center text-slate-900 bg-white border border-slate-300 px-4 py-2 rounded text-sm hover:bg-slate-50 transition-colors"
+                      className="inline-flex items-center text-slate-900 bg-white border border-slate-300 px-4 py-2 rounded text-sm hover:bg-slate-50 transition-colors shadow-sm"
                     >
                         <Mail className="w-4 h-4 mr-2" />
                         {language === 'fr' ? "Envoyer par email" : "Send by email"}
