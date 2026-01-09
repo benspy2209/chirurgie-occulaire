@@ -31,6 +31,9 @@ const Home: React.FC = () => {
             style={{ backgroundImage: noisePattern }}
           ></div>
 
+          {/* Carré décoratif sur la tête (Design element) */}
+          <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-48 h-48 md:top-[12%] md:w-64 md:h-64 border border-white/40 bg-white/5 backdrop-blur-[1px] z-10 pointer-events-none opacity-90 mix-blend-overlay shadow-sm"></div>
+
           {/* Gradient Fades (Fondu) */}
           {/* Mobile: Fade to bottom (white) */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white md:hidden"></div>
