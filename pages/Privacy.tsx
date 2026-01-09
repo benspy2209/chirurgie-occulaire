@@ -1,10 +1,11 @@
 import React from 'react';
 import { useLanguage } from '../components/LanguageContext';
-import { CONTENT } from '../constants';
+import { useContent } from '../components/ContentContext';
 
 const Privacy: React.FC = () => {
   const { language } = useLanguage();
-  const t = CONTENT[language].privacy;
+  const { content } = useContent();
+  const t = content[language].privacy;
 
   return (
     <div className="bg-white min-h-[60vh] py-16">

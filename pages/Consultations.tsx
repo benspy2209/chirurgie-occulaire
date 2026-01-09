@@ -1,11 +1,12 @@
 import React from 'react';
 import { useLanguage } from '../components/LanguageContext';
-import { CONTENT } from '../constants';
+import { useContent } from '../components/ContentContext';
 import { Eye } from 'lucide-react';
 
 const Consultations: React.FC = () => {
   const { language } = useLanguage();
-  const t = CONTENT[language].exams;
+  const { content } = useContent();
+  const t = content[language].exams;
 
   return (
     <div className="bg-white min-h-screen py-16">

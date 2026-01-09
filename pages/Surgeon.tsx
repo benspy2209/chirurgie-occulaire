@@ -1,11 +1,12 @@
 import React from 'react';
 import { useLanguage } from '../components/LanguageContext';
-import { CONTENT } from '../constants';
+import { useContent } from '../components/ContentContext';
 import { Award, Briefcase, Activity } from 'lucide-react';
 
 const Surgeon: React.FC = () => {
   const { language } = useLanguage();
-  const t = CONTENT[language].surgeon;
+  const { content } = useContent();
+  const t = content[language].surgeon;
 
   return (
     <div className="bg-white min-h-screen py-16">

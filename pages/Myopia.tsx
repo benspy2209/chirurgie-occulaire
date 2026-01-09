@@ -1,10 +1,11 @@
 import React from 'react';
 import { useLanguage } from '../components/LanguageContext';
-import { CONTENT } from '../constants';
+import { useContent } from '../components/ContentContext';
 
 const Myopia: React.FC = () => {
   const { language } = useLanguage();
-  const t = CONTENT[language].myopia;
+  const { content } = useContent();
+  const t = content[language].myopia;
 
   return (
     <div className="bg-white min-h-screen py-16">

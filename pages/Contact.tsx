@@ -1,11 +1,12 @@
 import React from 'react';
 import { useLanguage } from '../components/LanguageContext';
-import { CONTENT } from '../constants';
+import { useContent } from '../components/ContentContext';
 import { MapPin, Phone, Calendar, Clock } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
-  const t = CONTENT[language].contact;
+  const { content } = useContent();
+  const t = content[language].contact;
 
   return (
     <div className="bg-white min-h-screen py-16">

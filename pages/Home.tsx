@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../components/LanguageContext';
-import { CONTENT } from '../constants';
+import { useContent } from '../components/ContentContext';
 import { ArrowRight } from 'lucide-react';
 
 const Home: React.FC = () => {
   const { language } = useLanguage();
-  const t = CONTENT[language].home;
-  const tNav = CONTENT[language].nav;
+  const { content } = useContent(); // Use dynamic content
+  
+  const t = content[language].home;
+  const tNav = content[language].nav;
 
   // SVG Noise pattern for the grain effect
   const noisePattern = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")`;
@@ -30,9 +32,6 @@ const Home: React.FC = () => {
             className="absolute inset-0 opacity-[0.20] mix-blend-overlay pointer-events-none"
             style={{ backgroundImage: noisePattern }}
           ></div>
-
-          {/* Carré décoratif sur la tête (Design element) */}
-          <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-48 h-48 md:top-[12%] md:w-64 md:h-64 border border-white/40 bg-white/5 backdrop-blur-[1px] z-10 pointer-events-none opacity-90 mix-blend-overlay shadow-sm"></div>
 
           {/* Gradient Fades (Fondu) */}
           {/* Mobile: Fade to bottom (white) */}

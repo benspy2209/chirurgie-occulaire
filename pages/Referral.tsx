@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../components/LanguageContext';
-import { CONTENT } from '../constants';
+import { useContent } from '../components/ContentContext';
 import { Upload, CheckCircle, AlertCircle, AlertTriangle, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 
 const Referral: React.FC = () => {
   const { language } = useLanguage();
-  const t = CONTENT[language].referral;
+  const { content } = useContent();
+  const t = content[language].referral;
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);

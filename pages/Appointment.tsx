@@ -1,12 +1,13 @@
 import React from 'react';
 import { useLanguage } from '../components/LanguageContext';
-import { CONTENT } from '../constants';
+import { useContent } from '../components/ContentContext';
 import { Calendar, Phone, MapPin, Eye, FileText, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Appointment: React.FC = () => {
   const { language } = useLanguage();
-  const t = CONTENT[language].appointment;
+  const { content } = useContent();
+  const t = content[language].appointment;
   const opts = t.options;
 
   return (

@@ -1,6 +1,7 @@
 import React, { ReactNode, ErrorInfo } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './components/LanguageContext';
+import { ContentProvider } from './components/ContentContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Surgeon from './pages/Surgeon';
@@ -13,6 +14,7 @@ import Referral from './pages/Referral';
 import Contact from './pages/Contact';
 import Legal from './pages/Legal';
 import Privacy from './pages/Privacy';
+import Admin from './pages/Admin';
 
 // Helper component to scroll to top on route change
 const ScrollToTop = () => {
@@ -72,26 +74,29 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
-      <LanguageProvider>
-        <HashRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="presentation" element={<Surgeon />} />
-              <Route path="cataracte" element={<Cataract />} />
-              <Route path="retine" element={<Retina />} />
-              <Route path="myopie" element={<Myopia />} />
-              <Route path="consultations" element={<Consultations />} />
-              <Route path="rendez-vous" element={<Appointment />} />
-              <Route path="reference" element={<Referral />} />
-              <Route path="lieux" element={<Contact />} />
-              <Route path="mentions-legales" element={<Legal />} />
-              <Route path="politique-confidentialite" element={<Privacy />} />
-            </Route>
-          </Routes>
-        </HashRouter>
-      </LanguageProvider>
+      <ContentProvider>
+        <LanguageProvider>
+          <HashRouter>
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="presentation" element={<Surgeon />} />
+                <Route path="cataracte" element={<Cataract />} />
+                <Route path="retine" element={<Retina />} />
+                <Route path="myopie" element={<Myopia />} />
+                <Route path="consultations" element={<Consultations />} />
+                <Route path="rendez-vous" element={<Appointment />} />
+                <Route path="reference" element={<Referral />} />
+                <Route path="lieux" element={<Contact />} />
+                <Route path="mentions-legales" element={<Legal />} />
+                <Route path="politique-confidentialite" element={<Privacy />} />
+                <Route path="admin" element={<Admin />} />
+              </Route>
+            </Routes>
+          </HashRouter>
+        </LanguageProvider>
+      </ContentProvider>
     </ErrorBoundary>
   );
 };

@@ -1,10 +1,11 @@
 import React from 'react';
 import { useLanguage } from '../components/LanguageContext';
-import { CONTENT } from '../constants';
+import { useContent } from '../components/ContentContext';
 
 const Retina: React.FC = () => {
   const { language } = useLanguage();
-  const t = CONTENT[language].retina;
+  const { content } = useContent();
+  const t = content[language].retina;
 
   return (
     <div className="bg-white min-h-screen py-16">

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useLanguage } from './LanguageContext';
-import { CONTENT } from '../constants';
+import { useContent } from './ContentContext';
 import { Menu, X, Globe, MapPin } from 'lucide-react';
 
 const Layout: React.FC = () => {
   const { language, setLanguage } = useLanguage();
-  const t = CONTENT[language].nav;
+  const { content } = useContent();
+  const t = content[language].nav;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
