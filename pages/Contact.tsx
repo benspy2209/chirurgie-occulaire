@@ -2,14 +2,21 @@ import React from 'react';
 import { useLanguage } from '../components/LanguageContext';
 import { useContent } from '../components/ContentContext';
 import { MapPin, Phone, Calendar, Clock } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
   const { content } = useContent();
   const t = content[language].contact;
 
+  const seoTitle = language === 'fr' ? "Contact & Lieux de consultation" : "Contact & Locations";
+  const seoDesc = language === 'fr'
+    ? "Cabinets d'ophtalmologie à Wavre (Clinique Le Verseau) et Uccle (Messidor Eye Center). Contactez le Dr Dewispelaere."
+    : "Ophthalmology practices in Wavre (Clinique Le Verseau) and Uccle (Messidor Eye Center). Contact Dr Dewispelaere.";
+
   return (
     <div className="bg-white min-h-screen py-16">
+      <SEO title={seoTitle} description={seoDesc} path="/lieux" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl md:text-5xl font-light text-slate-900 mb-12 border-b border-gray-100 pb-8">
           {t.title}

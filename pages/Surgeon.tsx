@@ -2,14 +2,21 @@ import React from 'react';
 import { useLanguage } from '../components/LanguageContext';
 import { useContent } from '../components/ContentContext';
 import { Award, Briefcase, Activity } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Surgeon: React.FC = () => {
   const { language } = useLanguage();
   const { content } = useContent();
   const t = content[language].surgeon;
 
+  const seoTitle = language === 'fr' ? "Parcours du Dr Dewispelaere" : "Dr Dewispelaere Profile";
+  const seoDesc = language === 'fr'
+    ? "Chirurgien ophtalmologue diplômé ULB. Chef de clinique adjoint CHU Saint-Pierre. Spécialiste cataracte et rétine."
+    : "Ophthalmic surgeon ULB graduate. Deputy Head of Clinic CHU Saint-Pierre. Cataract and retina specialist.";
+
   return (
     <div className="bg-white min-h-screen py-16">
+      <SEO title={seoTitle} description={seoDesc} path="/presentation" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl md:text-5xl font-light text-slate-900 mb-12 border-b border-gray-100 pb-8">
           {t.title}
@@ -47,7 +54,6 @@ const Surgeon: React.FC = () => {
                   ))}
                 </ul>
                 
-                {/* Grey Box for Volume/Activities */}
                 <div className="bg-gray-50 p-6 mb-4">
                   {t.activities.map((item, idx) => (
                     <p key={idx} className="text-slate-800 font-medium text-sm mb-2 last:mb-0">
@@ -56,7 +62,6 @@ const Surgeon: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Disclaimer (What I don't do) - Small and Italic */}
                 <p className="text-xs text-slate-400 italic">
                   {t.disclaimer}
                 </p>
@@ -64,7 +69,7 @@ const Surgeon: React.FC = () => {
             </div>
           </section>
 
-          {/* Positions - Moved to Bottom */}
+          {/* Positions */}
           <section className="pt-8 border-t border-gray-100">
             <div className="flex items-start mb-4">
               <Briefcase className="w-6 h-6 text-slate-400 mt-1 mr-4 flex-shrink-0" />

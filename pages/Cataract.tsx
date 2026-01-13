@@ -1,14 +1,21 @@
 import React from 'react';
 import { useLanguage } from '../components/LanguageContext';
 import { useContent } from '../components/ContentContext';
+import SEO from '../components/SEO';
 
 const Cataract: React.FC = () => {
   const { language } = useLanguage();
   const { content } = useContent();
   const t = content[language].cataract;
 
+  const seoTitle = language === 'fr' ? "Chirurgie de la Cataracte" : "Cataract Surgery";
+  const seoDesc = language === 'fr' 
+    ? "Opération de la cataracte par phacoémulsification et implants premium. Intervention indolore et récupération rapide."
+    : "Cataract surgery using phacoemulsification and premium implants. Painless procedure and rapid recovery.";
+
   return (
     <div className="bg-white min-h-screen py-16">
+      <SEO title={seoTitle} description={seoDesc} path="/cataracte" />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl md:text-5xl font-light text-slate-900 mb-8">
           {t.title}

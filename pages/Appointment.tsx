@@ -3,6 +3,7 @@ import { useLanguage } from '../components/LanguageContext';
 import { useContent } from '../components/ContentContext';
 import { Calendar, Phone, MapPin, Eye, FileText, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const Appointment: React.FC = () => {
   const { language } = useLanguage();
@@ -10,8 +11,14 @@ const Appointment: React.FC = () => {
   const t = content[language].appointment;
   const opts = t.options;
 
+  const seoTitle = language === 'fr' ? "Prendre Rendez-vous" : "Book Appointment";
+  const seoDesc = language === 'fr'
+    ? "Rendez-vous en ligne via Mikrono pour le Dr Dewispelaere. Cabinet Wavre (Le Verseau) ou Uccle (Messidor)."
+    : "Book online via Mikrono for Dr Dewispelaere. Practices in Wavre (Le Verseau) or Uccle (Messidor).";
+
   return (
     <div className="bg-white min-h-screen py-16">
+      <SEO title={seoTitle} description={seoDesc} path="/rendez-vous" />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl md:text-5xl font-light text-slate-900 mb-8 text-center">
           {t.title}

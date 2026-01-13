@@ -1,14 +1,21 @@
 import React from 'react';
 import { useLanguage } from '../components/LanguageContext';
 import { useContent } from '../components/ContentContext';
+import SEO from '../components/SEO';
 
 const Retina: React.FC = () => {
   const { language } = useLanguage();
   const { content } = useContent();
   const t = content[language].retina;
 
+  const seoTitle = language === 'fr' ? "Chirurgie Vitréo-Rétinienne" : "Vitreo-Retinal Surgery";
+  const seoDesc = language === 'fr'
+    ? "Traitement chirurgical des maladies de la rétine et du vitré (vitrectomie). Dépistage et prise en charge spécialisée."
+    : "Surgical treatment of retinal and vitreous diseases (vitrectomy). Screening and specialized care.";
+
   return (
     <div className="bg-white min-h-screen py-16">
+      <SEO title={seoTitle} description={seoDesc} path="/retine" />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl md:text-5xl font-light text-slate-900 mb-8">
           {t.title}

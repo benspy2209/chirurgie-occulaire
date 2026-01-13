@@ -118,7 +118,7 @@ export const CONTENT: Record<string, SiteContent> = {
           city: "Wavre",
           address: "Chaussée de Louvain 43/2, 1300 Wavre",
           phone: "+32 10 41 28 01",
-          mikronoLink: "https://leverseau.mikrono.com/", 
+          mikronoLink: "https://remidewispelaere.mikrono.com", 
           mikronoText: "Prendre RDV (Mikrono)"
         },
         messidor: {
@@ -126,7 +126,7 @@ export const CONTENT: Record<string, SiteContent> = {
           city: "Uccle",
           address: "Avenue de Messidor 213, 1180 Uccle",
           phone: "+32 2 318 12 12",
-          mikronoLink: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=fr", 
+          mikronoLink: "https://rdewispelaere.mikrono.com", 
           mikronoText: "Prendre RDV (Mikrono)"
         },
         referral: {
@@ -166,7 +166,7 @@ export const CONTENT: Record<string, SiteContent> = {
           hours: "Mercredi : Toute la journée",
           map_url: "https://maps.google.com/maps?q=Clinique+Le+Verseau,+Chauss%C3%A9e+de+Louvain+43,+1300+Wavre&t=&z=15&ie=UTF8&iwloc=&output=embed",
           mikrono_text: "Prendre RDV (Mikrono)",
-          mikrono_link: "https://leverseau.mikrono.com/"
+          mikrono_link: "https://remidewispelaere.mikrono.com"
         },
         {
           name: "Messidor Eye Center",
@@ -175,7 +175,7 @@ export const CONTENT: Record<string, SiteContent> = {
           hours: "Mardi : Après-midi",
           map_url: "https://maps.google.com/maps?q=Messidor+Eye+Center,+Avenue+de+Messidor+213,+1180+Uccle&t=&z=15&ie=UTF8&iwloc=&output=embed",
           mikrono_text: "Prendre RDV (Mikrono)",
-          mikrono_link: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=fr"
+          mikrono_link: "https://rdewispelaere.mikrono.com"
         }
       ],
       surgery_locations: [
@@ -319,7 +319,7 @@ export const CONTENT: Record<string, SiteContent> = {
           city: "Wavre",
           address: "Chaussée de Louvain 43/2, 1300 Wavre",
           phone: "+32 10 41 28 01",
-          mikronoLink: "https://leverseau.mikrono.com/",
+          mikronoLink: "https://remidewispelaere.mikrono.com",
           mikronoText: "Book Online (Mikrono)"
         },
         messidor: {
@@ -327,7 +327,7 @@ export const CONTENT: Record<string, SiteContent> = {
           city: "Uccle",
           address: "Avenue de Messidor 213, 1180 Uccle",
           phone: "+32 2 318 12 12",
-          mikronoLink: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=en",
+          mikronoLink: "https://rdewispelaere.mikrono.com",
           mikronoText: "Book Online (Mikrono)"
         },
         referral: {
@@ -367,7 +367,7 @@ export const CONTENT: Record<string, SiteContent> = {
           hours: "Wednesday: All day",
           map_url: "https://maps.google.com/maps?q=Clinique+Le+Verseau,+Chauss%C3%A9e+de+Louvain+43,+1300+Wavre&t=&z=15&ie=UTF8&iwloc=&output=embed",
           mikrono_text: "Book Online (Mikrono)",
-          mikrono_link: "https://leverseau.mikrono.com/"
+          mikrono_link: "https://remidewispelaere.mikrono.com"
         },
         {
           name: "Messidor Eye Center",
@@ -376,7 +376,7 @@ export const CONTENT: Record<string, SiteContent> = {
           hours: "Tuesday: Afternoon",
           map_url: "https://maps.google.com/maps?q=Messidor+Eye+Center,+Avenue+de+Messidor+213,+1180+Uccle&t=&z=15&ie=UTF8&iwloc=&output=embed",
           mikrono_text: "Book Online (Mikrono)",
-          mikrono_link: "https://application.mikrono.com/?assoId=535757e12cdc3b6d9407a2f4&locale=en"
+          mikrono_link: "https://rdewispelaere.mikrono.com"
         }
       ],
       surgery_locations: [

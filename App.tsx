@@ -1,5 +1,6 @@
-import React, { Component, ReactNode, ErrorInfo } from 'react';
+import React, { ReactNode, ErrorInfo } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async'; // Import du provider SEO
 import { LanguageProvider } from './components/LanguageContext';
 import { ContentProvider } from './components/ContentContext';
 import Layout from './components/Layout';
@@ -36,11 +37,11 @@ interface ErrorBoundaryState {
   error: Error | null;
 }
 
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
-    super(props);
-    this.state = { hasError: false, error: null };
-  }
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  public state: ErrorBoundaryState = {
+    hasError: false,
+    error: null
+  };
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { hasError: true, error };
@@ -77,32 +78,34 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
-      <ContentProvider>
-        <LanguageProvider>
-          <HashRouter>
-            <ScrollToTop />
-            <Routes>
-              {/* Route Admin sortie du Layout principal pour être indépendante */}
-              <Route path="/admin" element={<Admin />} />
+      <HelmetProvider>
+        <ContentProvider>
+          <LanguageProvider>
+            <HashRouter>
+              <ScrollToTop />
+              <Routes>
+                {/* Route Admin sortie du Layout principal pour être indépendante */}
+                <Route path="/admin" element={<Admin />} />
 
-              {/* Routes publiques avec le Layout (Header/Footer) */}
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="presentation" element={<Surgeon />} />
-                <Route path="cataracte" element={<Cataract />} />
-                <Route path="retine" element={<Retina />} />
-                <Route path="myopie" element={<Myopia />} />
-                <Route path="consultations" element={<Consultations />} />
-                <Route path="rendez-vous" element={<Appointment />} />
-                <Route path="reference" element={<Referral />} />
-                <Route path="lieux" element={<Contact />} />
-                <Route path="mentions-legales" element={<Legal />} />
-                <Route path="politique-confidentialite" element={<Privacy />} />
-              </Route>
-            </Routes>
-          </HashRouter>
-        </LanguageProvider>
-      </ContentProvider>
+                {/* Routes publiques avec le Layout (Header/Footer) */}
+                <Route path="/" element={<Layout />}>
+                  <Route index element={<Home />} />
+                  <Route path="presentation" element={<Surgeon />} />
+                  <Route path="cataracte" element={<Cataract />} />
+                  <Route path="retine" element={<Retina />} />
+                  <Route path="myopie" element={<Myopia />} />
+                  <Route path="consultations" element={<Consultations />} />
+                  <Route path="rendez-vous" element={<Appointment />} />
+                  <Route path="reference" element={<Referral />} />
+                  <Route path="lieux" element={<Contact />} />
+                  <Route path="mentions-legales" element={<Legal />} />
+                  <Route path="politique-confidentialite" element={<Privacy />} />
+                </Route>
+              </Routes>
+            </HashRouter>
+          </LanguageProvider>
+        </ContentProvider>
+      </HelmetProvider>
     </ErrorBoundary>
   );
 };
